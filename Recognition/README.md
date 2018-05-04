@@ -84,9 +84,9 @@ python3 /workspace/tensorflow/models/research/slim/train_image_classifier.py \
 This process may take several days, depending on your hardware setup.
 Note that by using different GPU, you need to pay attention at the maximum '--batch_size' the GPU can take.
 
-|GPU|Nets|Maximum batch size|
-|Tesla V100|VGG 16|128|
-|GTX 1080 Ti|VGG 16|64|
+ |GPU|Nets|Maximum batch size|
+ |Tesla V100|VGG 16|128|
+ |GTX 1080 Ti|VGG 16|64|
 
 #### Evaluating performance of a model
 
