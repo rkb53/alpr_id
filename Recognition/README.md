@@ -11,7 +11,7 @@ This program was developed on Ubuntu 16.04. Before running this in your system, 
 * Python v3.5.2
 * [Tensorflow-GPU](https://www.tensorflow.org/install/install_linux) - Tensorflow, machine learning framework from Google. We use the version with GPU compatibility. It is reccomended to use the docker method of installing Tensorflow.
 * [OpenCV v3.3.0] - Framework for image processing
-* imgaug (https://github.com/aleju/imgaug) - Framework for image augmentation
+* [imgaug] (https://github.com/aleju/imgaug) - Framework for image augmentation
 
 
 ### Environment
@@ -31,9 +31,9 @@ We need to augment (and replicate) the dataset as an alternative to cope up low 
 $ DATA_DIR=/tmp/data/dataset_alpr
 $ python3 augmentation.py \
     --input="${DATA_DIR}" \
-    --output="${DATA_DIR + "_augmented/alpr"}" \
-	--multiple=18000 \
-	--limit=8000	
+	--output="${DATA_DIR + "_augmented/alpr"}" \
+    --multiple=18000 \
+    --limit=8000	
 ```
 When the script finishes you will find a new folder with "_augmented" at the end of the file name. This folder consists of "alpr" folder as an input to the next step of training.
 
@@ -101,25 +101,19 @@ python3 eval_image_classifier.py \
     --dataset_name=alpr \
     --dataset_split_name=validation \
     --model_name=vgg_16
-
+```
 
 #### Evaluating performance of a model
 
-
-
-
-
 ### Inferencing
 
-Jelaskan cara inferencing
-
-```
-Give an example
-```
 
 ## Authors and Contributors
 
-This documentation was made by Aldo Aditiya
+This documentation was made by:
+* Christoporus Deo Putratama,
+  github: [cputratama](https://github.com/cputratama)
+
 
 Project Authors include:
 
@@ -131,5 +125,4 @@ Project Authors include:
 
 ## Acknowledgments
 
-* PLACEHOLDER
 
