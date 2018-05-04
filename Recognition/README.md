@@ -9,7 +9,7 @@ This program was developed on Ubuntu 16.04. Before running this in your system, 
 ## Dependencies
 
 * Python v3.5.2
-* [Tensorflow-GPU](https://www.tensorflow.org/install/install_linux) - Tensorflow, machine learning framework from Google. We use the version with GPU compatibility. It is reccomended to use the docker method of installing Tensorflow.
+* [Tensorflow-GPU](https://www.tensorflow.org/install/install_linux) - Tensorflow, machine learning framework from Google. We use the version with GPU compatibility. It is recommended to use the docker method of installing Tensorflow.
 * [OpenCV v3.3.0] - Framework for image processing
 * [imgaug](https://github.com/aleju/imgaug) - Framework for image augmentation
 
@@ -25,13 +25,13 @@ This program consists of three process, augmenting dataset, training the model a
 
 ## Preparing the Dataset - Augmentation 
 
-We need to augment (and replicate) the dataset as an alternative to cope up low number of dataset so we will have big enough identical data. If you already had big number of dataset of license plate characters (ex: 200000 files), you don't have to replicate the dataset, but you still need to make sure that the datasets are balanced in each class, hence you may set the `--multiple` parameter near the number of the class that has the maximum files. Then, you can set the `--limit` parameter as a threshold to trim all files in each class to specific amount.
+We need to augment (and replicate) the dataset as an alternative to cope up low number of dataset so we will have big enough identical data. If you already had big number of dataset of license plate characters (ex: 200000 files), you don't have to replicate the dataset, but you still need to make sure that the datasets are balanced in each class, hence you may set the  `--multiple` parameter near the number of the class that has the maximum files. Then, you can set the `--limit` parameter as a threshold to trim all files in each class to specific amount.
 
 ```shell
 $ DATA_DIR=/tmp/data/dataset_alpr
 $ python3 augmentation.py \
     --input="${DATA_DIR}" \
-	--output="${DATA_DIR + "_augmented/alpr"}" \
+    --output="${DATA_DIR + "_augmented/alpr"}" \
     --multiple=18000 \
     --limit=8000	
 ```
@@ -39,7 +39,7 @@ When the script finishes you will find a new folder with `"_augmented"` at the e
 
 ## Training
 
-The instruction is basically the same as [TF-slim](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/slim), but with few adjustment.
+The instruction is basically the same as [TF-slim](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/slim), but with few adjustments.
 
 ### Converting to TFRecord format
 
@@ -109,15 +109,15 @@ python3 eval_image_classifier.py \
 
 Saves out a GraphDef containing the architecture of the model.
 
-Before running the script below, take notes that the current graph used by TF-slim do not have preprocessing input layer in the graph so we need to take some adjustment by adding these line inside the nets (ex: `vgg_16` in `vgg_16.py`) function.
+Before running the script below, take notes that the current graph used by TF-slim do not have preprocessing input layer in the graph so we need to take some adjustment by adding these line inside the nets (ex: `vgg_16` in `nets/vgg_16.py`) function.
 
 ```shell
   input_size = vgg_16.default_image_size
   input_depth = 3  
-  decoded_image = tf.image.decode_jpeg(inputs, channels=3)  
+  decoded_image = tf.image.decode_jpeg(inputs, channels=input_depth)  
   processed_image = vgg_preprocessing.preprocess_image(decoded_image,
-                                                         input_width,
-                                                         input_height,
+                                                         input_size,
+                                                         input_size,
                                                          is_training=False)
   decoded_image_as_float = tf.cast(processed_image, dtype=tf.float32)
   decoded_image_4d = tf.expand_dims(decoded_image_as_float, 0)  
@@ -128,7 +128,7 @@ Before running the script below, take notes that the current graph used by TF-sl
 ```
 Don't forget to import the library (`from preprocessing import vgg_preprocessing`).
 
-Those line above are needed only when you want to export the inference graph. Make sure to comment those lines in case you want to train another model.
+Those line above were needed only if you want to export the inference graph. Make sure to comment those lines in case you want to train another model.
 
 To use it with a model name defined by slim, run the script:
 
