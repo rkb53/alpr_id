@@ -25,7 +25,7 @@ This program consists of three process, augmenting dataset, training the model a
 
 ### Augmentation 
 
-We need to augment (and replicate) the dataset as an alternative to cope up low number of dataset so we will have big enough identical data. The parameter If you already had big number of dataset of license plate characters (ex: 200000 files), you do not have to replicate the dataset, but you still need to make sure that the datasets are balanced in each class, hence you may set the --multiple parameter near the number of the class that has the maximum files. Then, you can set the --limit parameter as a threshold to trim all files in each class to specific amount.
+We need to augment (and replicate) the dataset as an alternative to cope up low number of dataset so we will have big enough identical data. The parameter If you already had big number of dataset of license plate characters (ex: 200000 files), you do not have to replicate the dataset, but you still need to make sure that the datasets are balanced in each class, hence you may set the `--multiple` parameter near the number of the class that has the maximum files. Then, you can set the `--limit` parameter as a threshold to trim all files in each class to specific amount.
 
 ```shell
 $ DATA_DIR=/tmp/data/dataset_alpr
@@ -35,7 +35,7 @@ $ python3 augmentation.py \
     --multiple=18000 \
     --limit=8000	
 ```
-When the script finishes you will find a new folder with "_augmented" at the end of the file name. This folder consists of "alpr" folder as an input to the next step of training.
+When the script finishes you will find a new folder with `"_augmented"` at the end of the file name. This folder consists of `"alpr"` folder as an input to the next step of training.
 
 ### Training
 
@@ -43,7 +43,7 @@ The instruction is basically the same as [TF-slim](https://github.com/tensorflow
 
 #### Converting to TFRecord format
 
-Before converting dataset to TFRecord format, you need to set parameters in 'datasets/alpr.py'. There is a variable 'SPLIT_TO_SIZES' and you need to adjust the proportion of train and validation data. Ten percent of train data to be converted into validation data is advised.
+Before converting dataset to TFRecord format, you need to set parameters in `datasets/alpr.py`. There is a variable `SPLIT_TO_SIZES` and you need to adjust the proportion of train and validation data. Ten percent of train data to be converted into validation data is advised.
 
 ```shell
 $ DATA_DIR=/tmp/data/dataset_alpr_augmented/
@@ -64,7 +64,7 @@ alpr_validation-00000-of-00036.tfrecord
 alpr_validation-00035-of-00036.tfrecord
 labels.txt
 ```
-These represent the training and validation data, sharded over 36 files each. You will also find the $DATA_DIR/labels.txt file which contains the mapping from integer labels to class names.
+These represent the training and validation data, sharded over 36 files each. You will also find the `$DATA_DIR/labels.txt` file which contains the mapping from integer labels to class names.
 
 #### Training a model from scratch
 Below are the instructions for training
@@ -82,7 +82,7 @@ python3 /workspace/tensorflow/models/research/slim/train_image_classifier.py \
     --learning_rate=0.01
 ```
 This process may take several days, depending on your hardware setup.
-Note that by using different GPU, you need to pay attention at the maximum '--batch_size' the GPU can take.
+Note that by using different GPU, you need to pay attention at the maximum `--batch_size` the GPU can take.
 
  |GPU|Nets|Maximum batch size|
  |:---|:---|---:|
@@ -91,7 +91,7 @@ Note that by using different GPU, you need to pay attention at the maximum '--ba
 
 #### Evaluating performance of a model
 
-To evaluate the performance of a model, you can use the eval_image_classifier.py script, as shown below.
+To evaluate the performance of a model, you can use the `eval_image_classifier.py` script, as shown below.
 
 ```shell
 CHECKPOINT_FILE = ${CHECKPOINT_DIR}/model.ckpt- # Example
@@ -103,8 +103,6 @@ python3 eval_image_classifier.py \
     --dataset_split_name=validation \
     --model_name=vgg_16
 ```
-
-#### Evaluating performance of a model
 
 ### Inferencing
 
