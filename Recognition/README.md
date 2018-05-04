@@ -117,7 +117,7 @@ Saves out a GraphDef containing the architecture of the model.
 
 Before running the script below, take notes that the current graph used by TF-slim do not have preprocessing input layer in the graph so we need to take some adjustment by adding these line inside the nets (ex: `vgg_16` in `nets/vgg_16.py`) function.
 
-```shell
+```python
   input_size = vgg_16.default_image_size
   input_depth = 3  
   decoded_image = tf.image.decode_jpeg(inputs, channels=input_depth)  
