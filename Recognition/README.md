@@ -2,6 +2,12 @@
 
 Framework for training and inferencing models to be used for Indonesian License Plate detection. This section is for Character Recognition.
 
+# Contact
+
+Maintaners of Character Recognition `alpr_id`
+* Christoporus Deo Putratama,
+  github: [cputratama](https://github.com/cputratama)
+
 # Getting Started
 
 This program was developed on Ubuntu 16.04. Before running this in your system, be sure to setup the environment as per the requirements below.
