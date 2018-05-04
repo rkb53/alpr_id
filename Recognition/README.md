@@ -125,8 +125,7 @@ Before running the script below, take notes that the current graph used by TF-sl
   resize_shape_as_int = tf.cast(resize_shape, dtype=tf.int32)
   inputs = tf.image.resize_bilinear(decoded_image_4d,
                                     resize_shape_as_int)
-```shell
-
+```
 Don't forget to import the library (`from preprocessing import vgg_preprocessing`).
 
 Those line above are needed only when you want to export the inference graph. Make sure to comment those lines in case you want to train another model.
@@ -171,10 +170,12 @@ bazel-bin/tensorflow/tools/graph_transforms/summarize_graph \
 
 To run the resulting graph in python, you can look at the label_image sample code:
 
+```shell
 python3 /workspace/training_grounds/recognition/source/inference.py \
 --input=${HOME}/Pictures/char_alpr.jpg \
 --model1=/tmp/graph_rec_vgg_16.pb \
 --label1=/tmp/labels.txt
+```
 
 # Authors and Contributors
 
