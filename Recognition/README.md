@@ -4,7 +4,7 @@ Framework for training and inferencing models to be used for Indonesian License 
 
 # Contact
 
-Maintaners of Character Recognition `alpr_id`
+Maintaners of Character Recognition [alpr_id/recognition](https://github.com/rkb53/alpr_id/tree/master/Recognition)
 * Christoporus Deo Putratama,
   github: [cputratama](https://github.com/cputratama)
 
